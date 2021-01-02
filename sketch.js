@@ -26,6 +26,7 @@ function preload() {
 
 function setup() {
   createCanvas(320, 240);
+  ThunkableWebviewerExtension.postMessage("ready");
   // Start classifying
   // The sound model will continuously listen to the microphone
   classifier.classify(gotResult);
@@ -50,4 +51,5 @@ function gotResult(error, results) {
   // The results are in an array ordered by confidence.
   // console.log(results[0]);
   label = results[0].label;
+  ThunkableWebviewerExtension.postMessage(label);
 }
